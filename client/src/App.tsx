@@ -1,11 +1,16 @@
 import React from "react"
-import { ChakraProvider, Icon, Box, Text, Link, VStack, Wrap, Code, Grid, theme } from "@chakra-ui/react"
+import { ChakraProvider, Icon, Box, Text, Link, VStack, Wrap, Code, Grid, GridItem, theme } from "@chakra-ui/react"
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import GoSquare from "./Components/GoSquare"
 import PropertySquare from "./Components/PropertySquare"
 import BasicSquare from "./Components/BasicSquare"
 
-import { GiPrisoner } from "react-icons/gi"
+import { GiOpenTreasureChest, GiLightBulb } from "react-icons/gi"
+import { FaQuestion } from "react-icons/fa"
+import {} from "react-icons/ri"
+import { AiOutlineQuestion } from "react-icons/ai"
+import { BsQuestion } from "react-icons/bs"
+import { WiTrain } from "react-icons/wi"
 
 import { Property, Square } from "../../common/types"
 import JailSquare from "./Components/JailSquare"
@@ -62,22 +67,49 @@ function mapSquare(square: Square) {
             return <PropertySquare property={square} />
 
         case "communityChest":
-            return <BasicSquare name="Community Chest" />
+            return (
+                <BasicSquare
+                    name="Community Chest"
+                    icon={
+                        <Icon
+                            as={GiOpenTreasureChest}
+                            boxSize="100%"
+                            color="cyan.500"
+                            stroke="black"
+                            strokeWidth={7}
+                            strokeLinejoin="round"
+                        />
+                    }
+                />
+            )
 
         case "incomeTax":
-            return <BasicSquare name="Income Tax" price={200} pay />
+            return <BasicSquare name="Income Tax" footer="Pay $200" />
 
         case "railroad":
-            return <BasicSquare name={square.name} price={200} />
+            return <BasicSquare name={square.name} icon={<Icon as={WiTrain} boxSize="110%" color="black" />} footer="$200" />
 
         case "chance":
-            return <BasicSquare name="Chance" />
+            return (
+                <BasicSquare
+                    name="Chance"
+                    icon={<Icon as={BsQuestion} boxSize="160%" color="pink.500" stroke="black" strokeWidth={0.25} strokeLinejoin="round" />}
+                />
+            )
 
         case "jail":
             return <JailSquare />
 
         case "utility":
-            return <BasicSquare name={square.name} price={150} />
+            return (
+                <BasicSquare
+                    name={square.name}
+                    footer="$200"
+                    icon={
+                        <Icon as={GiLightBulb} h="90%" w="90%" color="yellow.300" stroke="black" strokeWidth={10} strokeLinejoin="round" />
+                    }
+                />
+            )
 
         case "freeParking":
             return null
@@ -86,14 +118,19 @@ function mapSquare(square: Square) {
             return null
 
         case "luxuryTax":
-            return <BasicSquare name="Luxury Tax" price={100} pay />
+            return <BasicSquare name="Luxury Tax" footer="Pay $200" />
     }
 }
 
 export default function App() {
     return (
         <ChakraProvider theme={theme}>
-            <Wrap>{BOARD.map(mapSquare)}</Wrap>
+            <Grid h="200px" templateRows="repeat(11, 1fr)" templateColumns="repeat(11, 1fr)" gap={0}>
+                {BOARD.map((square) => (
+                    <GridItem bg="tomato">{mapSquare(square)}</GridItem>
+                ))}
+                <GridItem rowStart={2} rowSpan={9} colStart={2} colSpan={9} bg="red.400" />
+            </Grid>
         </ChakraProvider>
     )
 }

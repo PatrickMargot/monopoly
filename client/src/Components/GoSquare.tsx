@@ -1,5 +1,5 @@
 import React, { FC } from "react"
-import { Box, Square, Icon, Flex, Text, Grid, GridItem, Spacer, Heading } from "@chakra-ui/react"
+import { Box, Square, Icon, Flex, Text, Grid, GridItem, Spacer, Heading, Center } from "@chakra-ui/react"
 
 import { CgArrowLongLeftL } from "react-icons/cg"
 
@@ -26,9 +26,9 @@ const PropertySquare: FC = () => (
         <Heading as="h2" size="xl">
             GO
         </Heading>
-        <Flex alignItems="center" justifyContent="center" h={50} w="100%">
-            <Icon as={CgArrowLongLeftL} h="130%" w="130%" color="red.600" />
-        </Flex>
+        <Center h={50} w="100%">
+            <Icon as={CgArrowLongLeftL} boxSize="160%" color="red.600" stroke="black" strokeWidth={0.5} strokeLinejoin="round" />
+        </Center>
     </Flex>
 )
 

@@ -6,9 +6,9 @@ import { GiPrisoner, GiImprisoned } from "react-icons/gi"
 const JailSquare: FC = () => (
     <Grid templateRows="75% 25%" templateColumns="25% 75%" w={150} h={150} bgColor="green.100" color="black" border="2px" textAlign="right">
         <Center>
-            <Heading as="h6" size="xs" transform="rotate(90deg)">
+            <Text fontSize="sm" transform="rotate(90deg)">
                 Just
-            </Heading>
+            </Text>
         </Center>
         <Flex direction="column" bgColor="orange.400" borderLeft="2px" borderBottom="2px" alignItems="center" justifyContent="center">
             <Heading as="h6" size="xs">
@@ -21,9 +21,7 @@ const JailSquare: FC = () => (
         </Flex>
         <Box />
         <Center>
-            <Heading as="h6" size="xs">
-                Visiting
-            </Heading>
+            <Text fontSize="sm">Visiting</Text>
         </Center>
     </Grid>
 )
