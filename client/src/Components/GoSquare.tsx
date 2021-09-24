@@ -3,13 +3,15 @@ import { Box, Square, Icon, Flex, Text, Grid, GridItem, Spacer, Heading, Center 
 
 import { CgArrowLongLeftL } from "react-icons/cg"
 
+import { SQUARE_HEIGHT } from "../constants"
+
 const PropertySquare: FC = () => (
     <Flex
         direction="column"
         alignItems="center"
         justifyContent="space-between"
-        w={150}
-        h={150}
+        w={SQUARE_HEIGHT}
+        h={SQUARE_HEIGHT}
         p={2}
         bgColor="green.100"
         color="black"
@@ -27,7 +29,14 @@ const PropertySquare: FC = () => (
             GO
         </Heading>
         <Center h={50} w="100%">
-            <Icon as={CgArrowLongLeftL} boxSize="160%" color="red.600" stroke="black" strokeWidth={0.5} strokeLinejoin="round" />
+            <Icon
+                as={CgArrowLongLeftL}
+                boxSize="160%"
+                color="red.600"
+                stroke="black"
+                strokeWidth={0.5}
+                strokeLinejoin="round"
+            />
         </Center>
     </Flex>
 )

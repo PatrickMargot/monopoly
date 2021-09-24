@@ -1,5 +1,18 @@
 import React from "react"
-import { ChakraProvider, Icon, Box, Text, Link, VStack, Wrap, Code, Grid, GridItem, theme, HStack } from "@chakra-ui/react"
+import {
+    ChakraProvider,
+    Icon,
+    Box,
+    Text,
+    Link,
+    VStack,
+    Wrap,
+    Code,
+    Grid,
+    GridItem,
+    theme,
+    HStack,
+} from "@chakra-ui/react"
 import { ColorModeSwitcher } from "./ColorModeSwitcher"
 import GoSquare from "./Components/GoSquare"
 import PropertySquare from "./Components/PropertySquare"
@@ -16,6 +29,7 @@ import { chunk, range } from "lodash"
 
 import { Property, Square } from "../../common/types"
 import JailSquare from "./Components/JailSquare"
+import { SQUARE_HEIGHT, SQUARE_WIDTH } from "./constants"
 
 const BOARD: readonly Square[] = [
     { type: "go" },
@@ -98,13 +112,28 @@ function mapSquare(square: Square) {
             return <BasicSquare name="Income Tax" footer="Pay $200" />
 
         case "railroad":
-            return <BasicSquare name={square.name} icon={<Icon as={WiTrain} boxSize="110%" color="black" />} footer="$200" />
+            return (
+                <BasicSquare
+                    name={square.name}
+                    icon={<Icon as={WiTrain} boxSize="110%" color="black" />}
+                    footer="$200"
+                />
+            )
 
         case "chance":
             return (
                 <BasicSquare
                     name="Chance"
-                    icon={<Icon as={BsQuestion} boxSize="160%" color="pink.500" stroke="black" strokeWidth={0.25} strokeLinejoin="round" />}
+                    icon={
+                        <Icon
+                            as={BsQuestion}
+                            boxSize="160%"
+                            color="pink.500"
+                            stroke="black"
+                            strokeWidth={0.25}
+                            strokeLinejoin="round"
+                        />
+                    }
                 />
             )
 
@@ -117,7 +146,15 @@ function mapSquare(square: Square) {
                     name={square.name}
                     footer="$200"
                     icon={
-                        <Icon as={GiLightBulb} h="90%" w="90%" color="yellow.300" stroke="black" strokeWidth={10} strokeLinejoin="round" />
+                        <Icon
+                            as={GiLightBulb}
+                            h="90%"
+                            w="90%"
+                            color="yellow.300"
+                            stroke="black"
+                            strokeWidth={10}
+                            strokeLinejoin="round"
+                        />
                     }
                 />
             )
@@ -138,7 +175,10 @@ console.log(BOARD_CORNERS, BOARD_SIDES)
 export default function App() {
     return (
         <ChakraProvider theme={theme}>
-            <Grid templateRows="150px 900px 150px" templateColumns="150px 900px 150px">
+            <Grid
+                templateRows={`${SQUARE_HEIGHT}px ${SQUARE_WIDTH * 9}px ${SQUARE_HEIGHT}px`}
+                templateColumns={`${SQUARE_HEIGHT}px ${SQUARE_WIDTH * 9}px ${SQUARE_HEIGHT}px`}
+            >
                 {/* {[2, 3, 1, 0].map((index) => (
                     <>
                         <GridItem bg="green">{mapSquare(BOARD_CORNERS[index])}</GridItem>
@@ -151,36 +191,38 @@ export default function App() {
                         </GridItem>
                     </>
                 ))} */}
-                <GridItem bg="green">{mapSquare(BOARD_CORNERS[2])}</GridItem>
-                <GridItem bg="tomato">
+                <GridItem>{mapSquare(BOARD_CORNERS[2])}</GridItem>
+                <GridItem>
                     <HStack spacing={0}>
                         {BOARD_SIDES[2].map((sideSquare) => (
                             <Box transform={`rotate(${180}deg)`}>{mapSquare(sideSquare)}</Box>
                         ))}
                     </HStack>
                 </GridItem>
-                <GridItem bg="green">{mapSquare(BOARD_CORNERS[3])}</GridItem>
-                <GridItem bg="tomato">
+                <GridItem>{mapSquare(BOARD_CORNERS[3])}</GridItem>
+                <GridItem>
                     <VStack spacing={0}>
                         {BOARD_SIDES[1].map((sideSquare) => (
-                            <Box transform={`rotate(${90}deg)`} transformOrigin="50% 75%" h={100} w={150}>
+                            <Box
+                                transform={`rotate(${90}deg)`}
+                                transformOrigin="50% 75%"
+                                h={SQUARE_WIDTH}
+                                w={SQUARE_HEIGHT}
+                            >
                                 {mapSquare(sideSquare)}
                             </Box>
                         ))}
                     </VStack>
                 </GridItem>
-                <GridItem bg="orange">middle</GridItem>
+                <GridItem bgColor="green.100">middle</GridItem>
                 <GridItem bg="tomato">
                     <VStack spacing={0}>
                         {BOARD_SIDES[3].map((sideSquare) => (
                             <Box
-                                // display="block"
                                 transform={`rotate(${-90}deg) translateX(-66.6666666666%)`}
                                 transformOrigin="top left"
-                                // marginTop="-50%"
-                                h={100}
-                                w={150}
-                                //
+                                h={SQUARE_WIDTH}
+                                w={SQUARE_HEIGHT}
                             >
                                 {mapSquare(sideSquare)}
                             </Box>
@@ -189,22 +231,9 @@ export default function App() {
                 </GridItem>
                 <GridItem bg="green">{mapSquare(BOARD_CORNERS[1])}</GridItem>
                 <GridItem bg="tomato">
-                    <HStack spacing={0}>
-                        {BOARD_SIDES[0].map((sideSquare) => (
-                            <Box transform={`rotate(${90 * 0}deg)`}>{mapSquare(sideSquare)}</Box>
-                        ))}
-                    </HStack>
+                    <HStack spacing={0}>{BOARD_SIDES[0].map(mapSquare)}</HStack>
                 </GridItem>
                 <GridItem bg="green">{mapSquare(BOARD_CORNERS[0])}</GridItem>
-                {/* <Box>1</Box>
-                <Box>1</Box>
-                <Box>1</Box>
-                <Box>1</Box>
-                <Box>1</Box>
-                <Box>1</Box>
-                <Box>1</Box>
-                <Box>1</Box>
-                <Box>1</Box> */}
             </Grid>
         </ChakraProvider>
     )

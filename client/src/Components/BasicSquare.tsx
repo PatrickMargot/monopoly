@@ -2,6 +2,8 @@ import React, { FC } from "react"
 import { Box, Flex, Spacer, Text, Icon, Square } from "@chakra-ui/react"
 import { IconType } from "react-icons"
 
+import { SQUARE_HEIGHT, SQUARE_WIDTH } from "../constants"
+
 type BasicSquareProps = {
     name: string
     icon?: JSX.Element
@@ -11,8 +13,8 @@ type BasicSquareProps = {
 const BasicSquare: FC<BasicSquareProps> = ({ name, icon, footer }) => (
     <Flex
         direction="column"
-        w={100}
-        h={150}
+        w={SQUARE_WIDTH}
+        h={SQUARE_HEIGHT}
         p={2}
         bgColor="green.100"
         color="black"
@@ -23,9 +25,8 @@ const BasicSquare: FC<BasicSquareProps> = ({ name, icon, footer }) => (
     >
         <Text fontSize="sm">{name}</Text>
         <Spacer />
-        {/* {icon} */}
         {icon && (
-            <Square size={70}>
+            <Square size={SQUARE_WIDTH * 0.7}>
                 <Square size="100%">{icon}</Square>
             </Square>
         )}

@@ -2,6 +2,7 @@ import React, { FC } from "react"
 import { ChakraProvider, Box, Center, Text, Link, VStack, Code, Grid, Flex, Spacer, Heading } from "@chakra-ui/react"
 
 import { Property, Color } from "../../../common/types"
+import { SQUARE_HEIGHT, SQUARE_WIDTH } from "../constants"
 
 const COLOR_MAP: Readonly<{ [key in Color]: string }> = {
     brown: "orange.800",
@@ -19,7 +20,7 @@ type PropertySquareProps = {
 }
 
 const PropertySquare: FC<PropertySquareProps> = ({ property: { color, name, price } }) => (
-    <Flex w={100} h={150} direction="column">
+    <Flex w={SQUARE_WIDTH} h={SQUARE_HEIGHT} direction="column">
         <Box h="25%" bgColor={COLOR_MAP[color]} border="2px" borderColor="black" />
         <Flex
             direction="column"

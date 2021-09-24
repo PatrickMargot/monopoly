@@ -3,14 +3,32 @@ import { Box, Square, Icon, Flex, Text, Grid, GridItem, Heading, Center } from "
 
 import { GiPrisoner, GiImprisoned } from "react-icons/gi"
 
+import { SQUARE_HEIGHT } from "../constants"
+
 const JailSquare: FC = () => (
-    <Grid templateRows="75% 25%" templateColumns="25% 75%" w={150} h={150} bgColor="green.100" color="black" border="2px" textAlign="right">
+    <Grid
+        templateRows="75% 25%"
+        templateColumns="25% 75%"
+        w={SQUARE_HEIGHT}
+        h={SQUARE_HEIGHT}
+        bgColor="green.100"
+        color="black"
+        border="2px"
+        textAlign="right"
+    >
         <Center>
             <Text fontSize="sm" transform="rotate(90deg)">
                 Just
             </Text>
         </Center>
-        <Flex direction="column" bgColor="orange.400" borderLeft="2px" borderBottom="2px" alignItems="center" justifyContent="center">
+        <Flex
+            direction="column"
+            bgColor="orange.400"
+            borderLeft="2px"
+            borderBottom="2px"
+            alignItems="center"
+            justifyContent="center"
+        >
             <Heading as="h6" size="xs">
                 In
             </Heading>
